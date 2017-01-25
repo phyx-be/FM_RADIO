@@ -13,8 +13,8 @@
 #define FIX_BAND          RADIO_BAND_FM   ///< The band that will be tuned by this sketch is FM.
 #define FIX_STATION       8800            ///< The station that will be tuned by this sketch is 89.30 MHz.
 #define AMP_ENABLE_PIN    A0              ///< Amp enable pin (A0)
-#define ENCODER_A         A2              ///< Encoder pin A (A1)
-#define ENCODER_B         A1              ///< Encoder pin B (A2)
+#define ENCODER_A         A1              ///< Encoder pin A (A1)
+#define ENCODER_B         A2              ///< Encoder pin B (A2)
 #define ENCODER_BUTTON    A3              ///< Encoder button (A3)
 #define VOLUME_LEVELS     16
 #define PULSE_PER_VOLUME  1
@@ -120,7 +120,7 @@ void loop() {
       currentButtonState = reading;
 
       // only toggle the LED if the new button state is HIGH
-      if (currentButtonState == HIGH) {
+      if (currentButtonState == LOW) {
         currentRadioState = !currentRadioState;
         Serial.print("Set radio state: ");
         Serial.println(currentRadioState, DEC);
