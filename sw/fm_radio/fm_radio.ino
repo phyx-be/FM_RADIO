@@ -96,6 +96,10 @@ void loop() {
     Serial.print("Set volume to ");
     Serial.println(currentVolume, DEC);
     radio.setVolume(currentVolume);
+    if(currentVolume > 0) {
+      currentAmpState = HIGH;
+      currentRadioState = HIGH;
+    }
   }
 
     // read the state of the switch into a local variable:
