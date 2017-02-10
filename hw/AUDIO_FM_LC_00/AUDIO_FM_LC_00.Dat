@@ -1,0 +1,27 @@
+﻿Field=#~Integer~#~50|Field=Comment~String~Comment~89|Field=Description~String~Description~89|Field=Designator~String~Designator~89|Field=Footprint~String~Footprint~89|Field=LibRef~String~LibRef~128|Field=Quantity~Integer~Quantity~51|Field=Supplier 1~String~Supplier 1~71|Field=Supplier Part Number 1~String~Supplier Part Number 1~145|Field=Value~String~Value~20|ReportField=Currency~<none>|ReportField=ProductionQuantity~1|ReportField=ProjectFileName~AUDIO_FM_LC_00.PrjPcb|ReportField=ProjectFullPath~C:\Users\Wim\Dropbox\Electronics\AUDIO_FM_LC_00\AUDIO_FM_LC_00.PrjPcb|ReportField=Title~Bill of Materials For Variant [LOW_COST] of Project [AUDIO_FM_LC_00.PrjPcb] (PCB Document : AUDIO_FM_LC_00.PcbDoc)|ReportField=TotalQuantity~55|ReportField=ReportTime~17:32:25|ReportField=ReportDate~5/01/2017|ReportField=ReportDateTime~5/01/2017 17:32:25|ReportField=OutputName~Bill of Materials|ReportField=OutputType~BOM_PartType|ReportField=GeneratorName~BOM|ReportField=GeneratorDescription~Bill of Materials|ReportField=VariantName~LOW_COST|ReportField=PCB_TITLE~AUDIO_FM_LC|ReportField=PCB_REV~00|ReportField=PCB_ENGINEER~WimVG|ReportField=Address1~|ReportField=Address2~|ReportField=Address3~|ReportField=Address4~|ReportField=Application_BuildNumber~|ReportField=ApprovedBy~|ReportField=Author~|ReportField=CheckedBy~|ReportField=CompanyName~|ReportField=CurrentDate~5/01/2017|ReportField=CurrentTime~17:25:15|ReportField=Date~5/01/2017|ReportField=DocumentFullPathAndName~C:\Users\Wim\Dropbox\Electronics\AUDIO_FM_LC_00\AUDIO_FM_LC_00.SchDoc|ReportField=DocumentName~AUDIO_FM_LC_00.SchDoc|ReportField=DocumentNumber~|ReportField=DrawnBy~Wim Van Gool|ReportField=Engineer~|ReportField=ImagePath~|ReportField=ModifiedDate~5/01/2017|ReportField=Organization~|ReportField=PageSetup~Record=PageOptions:CenterHorizontal=True:CenterVertical=True:PrintScale=0.70:XCorrection=1.00:YCorrection=1.00:PrintKind=1:BorderSize=5000000:LeftOffset=0:BottomOffset=0:Orientation=2:PaperLength=1000:PaperWidth=1000:Scale=100:PaperSource=15:PrintQuality=600:MediaType=1:DitherType=10:PrintScaleMode=1:PaperKind=A4 (210 x 297 mm):PaperIndex=9|ReportField=ProjectName~AUDIO_FM_LC_00.PrjPcb|ReportField=Revision~00|ReportField=Rule~|ReportField=SheetNumber~2|ReportField=SheetTotal~2|ReportField=Time~|ReportField=Title~AUDIO_FM_LC|ReportField=DataSourceFileName~AUDIO_FM_LC_00.PrjPcb|ReportField=DataSourceFullPath~C:\Users\Wim\Dropbox\Electronics\AUDIO_FM_LC_00\AUDIO_FM_LC_00.PrjPcb|ReportField=PCBDataSourceFileName~AUDIO_FM_LC_00.PcbDoc|ReportField=PCBDataSourceFullPath~C:\Users\Wim\Dropbox\Electronics\AUDIO_FM_LC_00\AUDIO_FM_LC_00.PcbDoc
+1||Capacitor Ceramic|C1, C3, C9, C11, C12, C19, C22, C23, C24, C27|C0603_N|CAP # 100nF 16V 0603|10|||100nF 16V
+2||Capacitor Ceramic|C2, C10, C13, C20|C0805_N|CAP # 10uF 6V3 0805|4|Farnell|2309029|10uF 6V3
+3||Capacitor electrolyt|C5|C_5x11_2mm|CAP 100uF 10V 5x11mm|1|Farnell|1902882|100uF 10V
+4||Capacitor Ceramic|C6, C7, C14, C15, C17, C18, C21|C0603_N|CAP # 1nF 16V 0603|7|||1nF 16V
+5||Capacitor Ceramic|C8, C16|C0805_N|CAP # 1uF 16V 0805|2|Farnell|2320853|1uF 16V
+6||Capacitor Ceramic|C25, C26|C0603_N|CAP # 18pF 0603|2|||18pF
+7|Default 0805 Red LED|=Description|D1|LED_0805_RD|LED # Red 0805|1|Farnell|2099236 |
+8|Rotary Encoder with Switch||ENC1|PEC11-4215F-S0024|ENC ROT INC 24-24ppr SW|1|Farnell||PEC11-4215F-S0024
+9|BLM18KG601SN1D||F1, F2, F3, F4|L0603|FER # 600R 1A3 0603 0R15 BLM18KG601SN1D|4|Farnell|1781094|1A3 0R15
+10|2 Way Screw HDR 3,5mm||P1, P3, P4|WE_691103110002|Terminal Block 3,5mm 2way - 691103110002|3|Wurth||691103110002
+11|Header 3X2||P2|HDR2X3|Pin Header 2.54mm dual row 6way|1|||
+12|Header 5x2||P5|HDR2X5|Pin Header 2.54mm dual row 10way|1|||
+13|Header 5||P6|HDR1X5|Pin Header 2.54mm 5way|1|||
+14|Header 2||P7|HDR1X2|Pin Header 2.54mm 2way|1|||
+15|||R1, R4|R0603_N|RES # 47K 0603|2|||47K
+16|||R2, R3|R0603_N|RES # 1K 0603|2|||1K
+17|||R5, R6|R0603_N|RES # 330R 0603|2|Farnell|2446656|330R
+18|||R7|R0603_N|RES # 10K 0603|1|Farnell|2502397|10K
+19|Default TH TACT||SW1|TACTSW|SW TACT|1|||
+20|||TP1|TP_1.5mm_0.9mm|TP 1.5mm|1|||NO BOM
+21|5W Class D mono amplifier inducter-less|=Description|U1, U2|SOIC_N_8_TH|AMP # AUDIO NS4158|2|Aliexpress|NS4158|NS4158
+22|FM Receiver I2C|=Description|U3|TI_DGS_S-PDSO-G10|FM # AR1019|1|Aliexpress|AR1019|AR1019
+23|RRD-102 V2.0 FM Radio Module With RDS decoding|=Description|U4|RRD-102|FM # MOD RRD-102|1|Aliexpress|RRD-102|RRD-102 FM Module
+24|8-bit MCU|ATMega328 SMD TQFP|U5|TQFP_32|AVR # ATMega 328 MCU TQFP|1|||ATMega 328
+25|32.768Khz CMR200 12.5pF|Crystal Oscillator|Y1|CMR200T|XTAL # 32.768Khz 12.5pF CMR200|1|Farnell|2101359|32.768KHz
+26|16MHz 18pF HC49US|Crystal Oscillator|Y2|HC49US|XTAL 16Mhz HC49US|1|Farnell|2508458|16MHz
