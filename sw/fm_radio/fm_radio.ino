@@ -13,7 +13,7 @@
 #include <EEPROM.h>
 
 // ID of the settings block
-#define CONFIG_VERSION "ls1"
+#define CONFIG_VERSION "fm1"
 
 // Tell it where to store your config data in EEPROM
 #define CONFIG_START 32
@@ -22,9 +22,9 @@
 struct StoreStruct {
   // This is for mere detection if they are your settings
   char version[4];
-  // The variables of your settings
-  int encoder0Pos; // encoder value (0 to VOLUME_LEVELS*PULSE_PER_VOLUME)
-  int currentRadioState; // is the radio on or off?
+  // The settings variables
+  int encoder0Pos;        // encoder value (0 to VOLUME_LEVELS*PULSE_PER_VOLUME)
+  int currentRadioState;  // is the radio on or off?
 } storage = {
   CONFIG_VERSION,
   // The default values
@@ -34,7 +34,7 @@ struct StoreStruct {
 
 // ----- Fixed settings -----
 #define FIX_BAND          RADIO_BAND_FM   // The band that will be tuned by this sketch is FM.
-#define FIX_STATION       8800            // The station that will be tuned by this sketch is 89.30 MHz.
+#define FIX_STATION       8950            // The station that will be tuned by this sketch is 89.50 MHz = Klara
 #define AMP_ENABLE_PIN    A1              // Amp enable pin (A1)
 #define ENCODER_A         3               // Encoder pin A INT1
 #define ENCODER_B         A2              // Encoder pin B (A2)
@@ -44,14 +44,16 @@ struct StoreStruct {
 #define LED_PIN           A0              // indicator LED pin (A0)     
 #define OLED_ENABLE_PIN   A3              // enable OLED screen (A3)
 
-int currentVolume;              // current volume value    
-int previousAmpState;           // previous amp state (enabled/disabled)
-int currentAmpState;            // current amp state (enabled/disabled)
-int previousButtonState = LOW;  // Previous encoder button state
-int currentButtonState = LOW;   // Current encoder button state
-int previousRadioState;         // debounced previous button state (pressed/not pressed)
-long time = 0;                  // the last time the encoder button pin was toggled
-long debounce = 100;            // the debounce time
+int currentVolume;                 // current volume value    
+int previousAmpState;              // previous amp state (enabled/disabled)
+int currentAmpState;               // current amp state (enabled/disabled)
+int previousButtonState = LOW;     // Previous encoder button state
+int previousLongButtonState = LOW; // Previous long-press encoder button state
+int currentButtonState = LOW;      // Current encoder button state
+int previousRadioState;            // debounced previous button state (pressed/not pressed)
+long time = 0;                     // the last time the encoder button pin was toggled
+long debounce = 100;               // the debounce time
+long longpress = 1000;             // long press time 1 sec
 
 RDA5807M radio;    // Create an instance of Class for RDA5807M Chip
 
@@ -75,14 +77,17 @@ void loadConfig() {
   // If nothing is found it will use the default settings.
   if (EEPROM.read(CONFIG_START + 0) == CONFIG_VERSION[0] &&
       EEPROM.read(CONFIG_START + 1) == CONFIG_VERSION[1] &&
-      EEPROM.read(CONFIG_START + 2) == CONFIG_VERSION[2])
-    for (unsigned int t=0; t<sizeof(storage); t++)
+      EEPROM.read(CONFIG_START + 2) == CONFIG_VERSION[2]) {
+    for (unsigned int t=0; t<sizeof(storage); t++) {
       *((char*)&storage + t) = EEPROM.read(CONFIG_START + t);
+    }
+  }
 }
 
 void saveConfig() {
-  for (unsigned int t=0; t<sizeof(storage); t++)
+  for (unsigned int t=0; t<sizeof(storage); t++) {
     EEPROM.write(CONFIG_START + t, *((char*)&storage + t));
+  }
 }
 
 /// Setup a FM only radio configuration
@@ -156,8 +161,9 @@ void loop() {
   bool dirty = false;
 
   // Calculate the volume
-  if((storage.encoder0Pos/PULSE_PER_VOLUME) != currentVolume) {
-    currentVolume = storage.encoder0Pos/PULSE_PER_VOLUME;
+  int newVolume = storage.encoder0Pos/PULSE_PER_VOLUME;
+  if(newVolume != currentVolume) {
+    currentVolume = newVolume;
     dirty = true;
     Serial.print("Set volume to ");
     Serial.println(currentVolume, DEC);
@@ -168,18 +174,28 @@ void loop() {
     }
   }
 
-
   if (((millis() - time) > debounce) && (previousButtonState != currentButtonState)) {
     // whatever the reading is at, it's been there for longer
     // than the debounce delay, so take it as the actual current state:
     previousButtonState = currentButtonState;
 
-    // only toggle the LED if the new button state is HIGH
+    // Toggle on falling edge
     if (currentButtonState == LOW) {
       storage.currentRadioState = !storage.currentRadioState;
       Serial.print("Set radio state: ");
       Serial.println(storage.currentRadioState, DEC);
       dirty = true;
+    }
+  }
+
+  if (((millis() - time) > longpress) && (previousLongButtonState != currentButtonState)) {
+    // whatever the reading is at, it's been there for longer
+    // than the debounce delay, so take it as the actual current state:
+    previousLongButtonState = currentButtonState;
+
+    // Toggle on rising edge
+    if (currentButtonState == HIGH) {
+      Serial.println("Long press");
     }
   }
   
